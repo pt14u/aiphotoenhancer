@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - AI Photo Enhancer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --dark: #2D2B55;
+            --light: #F8F9FA;
+            --gradient: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .hero-section {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .steps-container {
+            max-width: 800px;
+            margin: 60px auto;
+            position: relative;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient);
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-right: 40px;
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .step-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            flex: 1;
+        }
+        
+        .step-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f5f5f5, #e0e0e0);
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+            border: 2px dashed #ddd;
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #bbb;
+        }
+        
+        .process-diagram {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .diagram-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .diagram-step {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+        }
+        
+        .diagram-step .icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .local-processing {
+            background: linear-gradient(135deg, #2D2B55 0%, #1a1940 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 15px;
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .local-processing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .comparison-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-links a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .steps-container::before {
+                left: 40px;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 20px;
+                align-self: center;
+            }
+            
+            .diagram-step {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-magic"></i>
+                    AI Photo Enhancer
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="features.html">Features</a>
+                    <a href="how-it-works.html" class="active">How It Works</a>
+                    <a href="privacy-policy.html">Privacy</a>
+                </div>
+                <a href="index.html#download" class="cta-button">Download Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>How AI Photo Enhancer Works</h1>
+            <p>Discover the magic behind our AI-powered photo enhancement technology</p>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <div class="container">
+        <div class="steps-container">
+            <!-- Step 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Select Your Photo</h3>
+                    <p>Choose a photo from your gallery or take a new picture directly within the app. You can select multiple photos for batch processing.</p>
+                    
+                    <!-- Placeholder for App Screenshot -->
+                    <div class="image-placeholder">
+                        <div>
+                            <i class="fas fa-images"></i>
+                            <p>Add gallery selection screenshot here</p>
+                            <small>assets/screenshots/photo-selection.jpg</small>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Supported formats:</strong> JPG, PNG, WEBP, HEIC</p>
+                    <p><strong>Maximum resolution:</strong> Up to 48MP</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Choose Enhancement Type</h3>
+                    <p>Select from our AI enhancement options: Super Resolution, Color Enhancement, Portrait Mode, Low Light Enhancement, or Photo Restoration.</p>
+                    
+                    <!-- Placeholder for App Screenshot -->
+                    <div class="image-placeholder">
+                        <div>
+                            <i class="fas fa-sliders-h"></i>
+                            <p>Add enhancement selection screenshot here</p>
+                            <small>assets/screenshots/enhancement-selection.jpg</small>
+                        </div>
+                    </div>
+                    
+                    <ul>
+                        <li><strong>Auto-detect:</strong> Let AI choose the best enhancement</li>
+                        <li><strong>Manual selection:</strong> Choose specific enhancement type</li>
+                        <li><strong>Custom settings:</strong> Adjust parameters manually</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Local AI Processing</h3>
+                    <p>Our AI models process your photo entirely on your device. No internet connection required. The AI analyzes and enhances every pixel locally.</p>
+                    
+                    <!-- Placeholder for App Screenshot -->
+                    <div class="image-placeholder">
+                        <div>
+                            <i class="fas fa-microchip"></i>
+                            <p>Add processing screen screenshot here</p>
+                            <small>assets/screenshots/processing-screen.jpg</small>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 20px 0;">
+                        <div style="text-align: center; padding: 15px;">
+                            <i class="fas fa-brain" style="color: var(--primary); font-size: 2rem;"></i>
+                            <p>Neural Network Analysis</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px;">
+                            <i class="fas fa-bolt" style="color: var(--primary); font-size: 2rem;"></i>
+                            <p>Real-time Processing</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px;">
+                            <i class="fas fa-lock" style="color: var(--primary); font-size: 2rem;"></i>
+                            <p>100% Local</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Preview & Adjust</h3>
+                    <p>Preview the enhanced result side-by-side with the original. Make additional adjustments if needed before saving.</p>
+                    
+                    <!-- Placeholder for App Screenshot -->
+                    <div class="image-placeholder">
+                        <div>
+                            <i class="fas fa-eye"></i>
+                            <p>Add preview screen screenshot here</p>
+                            <small>assets/screenshots/preview-screen.jpg</small>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Preview features:</strong></p>
+                    <ul>
+                        <li>Side-by-side comparison</li>
+                        <li>Zoom and pan</li>
+                        <li>Before/after toggle</li>
+                        <li>Additional adjustment sliders</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Save & Share</h3>
+                    <p>Save the enhanced photo to your gallery or share it directly to social media platforms.</p>
+                    
+                    <!-- Placeholder for App Screenshot -->
+                    <div class="image-placeholder">
+                        <div>
+                            <i class="fas fa-save"></i>
+                            <p>Add save/share screen screenshot here</p>
+                            <small>assets/screenshots/save-screen.jpg</small>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 20px 0;">
+                        <div style="text-align: center;">
+                            <i class="fab fa-instagram" style="color: #E4405F; font-size: 2rem;"></i>
+                            <p>Instagram</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <i class="fab fa-facebook" style="color: #1877F2; font-size: 2rem;"></i>
+                            <p>Facebook</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <i class="fab fa-whatsapp" style="color: #25D366; font-size: 2rem;"></i>
+                            <p>WhatsApp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Diagram -->
+        <section class="process-diagram">
+            <h2 style="color: var(--dark); margin-bottom: 20px;">AI Processing Pipeline</h2>
+            <p style="color: #666; max-width: 800px; margin: 0 auto 40px;">
+                Our AI uses a sophisticated neural network pipeline to analyze and enhance every aspect of your photos
+            </p>
+            
+            <div class="diagram-steps">
+                <div class="diagram-step">
+                    <div class="icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Input Analysis</h3>
+                    <p>AI analyzes image quality, resolution, and content</p>
+                </div>
+                
+                <div class="diagram-step">
+                    <div class="icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Neural Processing</h3>
+                    <p>Deep learning models enhance specific features</p>
+                </div>
+                
+                <div class="diagram-step">
+                    <div class="icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Optimization</h3>
+                    <p>Image is optimized for quality and file size</p>
+                </div>
+                
+                <div class="diagram-step">
+                    <div class="icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Quality Check</h3>
+                    <p>Final quality assessment and validation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Local Processing Highlight -->
+        <section class="local-processing">
+            <h2>100% Local Processing Architecture</h2>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">
+                Unlike cloud-based photo editors, AI Photo Enhancer processes everything on your device. 
+                Your photos never leave your phone, ensuring complete privacy and faster processing.
+            </p>
+            
+            <div class="comparison-grid">
+                <div class="comparison-item" style="background: rgba(255,255,255,0.1);">
+                    <h3 style="color: white;">Our App (Local Processing)</h3>
+                    <ul style="color: #ddd;">
+                        <li>✅ No internet required for enhancement</li>
+                        <li>✅ Photos stay on your device</li>
+                        <li>✅ Faster processing</li>
+                        <li>✅ Complete privacy</li>
+                        <li>✅ Works offline</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-item" style="background: rgba(255,255,255,0.1);">
+                    <h3 style="color: white;">Cloud-Based Apps</h3>
+                    <ul style="color: #ddd;">
+                        <li>❌ Requires internet connection</li>
+                        <li>❌ Photos uploaded to servers</li>
+                        <li>❌ Slower processing</li>
+                        <li>❌ Privacy concerns</li>
+                        <li>❌ Doesn't work offline</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI Photo Enhancer</h3>
+                    <p>Transform your photos with AI. All processing happens locally on your device for maximum privacy.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="features.html">Features</a>
+                        <a href="how-it-works.html">How It Works</a>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:support@aiphotoenhancer.com">support@aiphotoenhancer.com</a>
+                        <a href="#">Feature Request</a>
+                        <a href="#">Report Bug</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 AI Photo Enhancer. All rights reserved. All image processing happens locally on your device.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation for steps
+        const stepObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.step').forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateX(-20px)';
+            step.style.transition = 'opacity 0.5s, transform 0.5s';
+            stepObserver.observe(step);
+        });
+        
+        // Animation for diagram steps
+        document.querySelectorAll('.diagram-step').forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(20px)';
+            step.style.transition = 'opacity 0.5s, transform 0.5s';
+            stepObserver.observe(step);
+        });
+    </script>
+</body>
+</html>
