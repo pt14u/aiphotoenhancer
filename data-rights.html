@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Rights & Privacy - [Your App Name]</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+            margin-top: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .app-name {
+            color: #3498db;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background-color: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin: 20px 0 10px;
+            font-size: 1.4rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+        
+        .highlight {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #bbdefb;
+        }
+        
+        .permission-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .permission-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .permission-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .permission-reason {
+            color: #555;
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+        
+        .contact {
+            background-color: #e8f5e9;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .contact h2 {
+            color: #27ae60;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .permission-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Data Rights & Privacy Policy</h1>
+            <div class="subtitle">For <span class="app-name">[Your App Name]</span> - Image Editor & Effects Application</div>
+            <p><em>Last Updated: [Date]</em></p>
+        </header>
+        
+        <section class="section">
+            <h2>Our Commitment to Your Privacy</h2>
+            <p>At <span class="app-name">[Your App Name]</span>, we respect your privacy and are committed to protecting your personal data. This page explains how we handle data in our application and your rights regarding your information.</p>
+            
+            <div class="highlight">
+                <h3>🌟 Key Principle</h3>
+                <p><strong>All image processing happens 100% locally on your device.</strong> We do not upload, store, or transmit any of your photos, images, or personal data to our servers or any third parties. Your photos never leave your device.</p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Permissions We Request & Why</h2>
+            <p>Our app requests certain permissions to function properly. Here's exactly why we need each one:</p>
+            
+            <div class="permission-list">
+                <div class="permission-item">
+                    <div class="permission-name">READ_MEDIA_IMAGES / READ_EXTERNAL_STORAGE</div>
+                    <div class="permission-reason">To access your photo gallery so you can select images to edit. We only read images you explicitly choose.</div>
+                </div>
+                
+                <div class="permission-item">
+                    <div class="permission-name">WRITE_EXTERNAL_STORAGE</div>
+                    <div class="permission-reason">To save edited images back to your device's gallery so you can keep your creations. This is only used for saving your final edited photos.</div>
+                </div>
+                
+                <div class="permission-item">
+                    <div class="permission-name">INTERNET & NETWORK_STATE</div>
+                    <div class="permission-reason">To display advertisements (if enabled) and check connectivity. No personal data or images are transmitted for ads.</div>
+                </div>
+                
+                <div class="permission-item">
+                    <div class="permission-name">CAMERA (Optional)</div>
+                    <div class="permission-reason">Only if you choose to take new photos directly within the app instead of selecting from gallery.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Data Collection & Usage</h2>
+            
+            <h3>What We Don't Collect:</h3>
+            <ul>
+                <li>❌ <strong>Your photos or edited images</strong> - All processing is local</li>
+                <li>❌ <strong>Personal identification information</strong></li>
+                <li>❌ <strong>Location data</strong></li>
+                <li>❌ <strong>Contact lists or messages</strong></li>
+                <li>❌ <strong>Device identifiers</strong> (except anonymous ad identifiers if ads enabled)</li>
+            </ul>
+            
+            <h3>What We May Collect (Anonymous Data):</h3>
+            <ul>
+                <li>📊 <strong>App usage statistics</strong> - Crash reports and performance data (anonymous)</li>
+                <li>🛠️ <strong>Diagnostic information</strong> - To fix bugs and improve app stability</li>
+                <li>📈 <strong>Advertising data</strong> - Only if you see ads, collected by ad networks according to their policies</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2>Third-Party Services</h2>
+            
+            <h3>Advertising Networks:</h3>
+            <p>We may use third-party ad networks (Unity Ads, Huawei Ads) to display ads. These networks may collect:</p>
+            <ul>
+                <li>Anonymous ad identifiers</li>
+                <li>Device type and OS version</li>
+                <li>General location (country-level, not precise)</li>
+                <li>Ad interaction data</li>
+            </ul>
+            <p><strong>Note:</strong> No images or personal content from the app is shared with advertisers.</p>
+            
+            <h3>Analytics Services:</h3>
+            <p>We may use analytics services to understand app usage patterns and improve user experience. All data is aggregated and anonymous.</p>
+        </section>
+        
+        <section class="section">
+            <h2>Your Data Rights</h2>
+            
+            <p>Under various privacy regulations (GDPR, CCPA, etc.), you have the right to:</p>
+            <ol>
+                <li><strong>Access</strong> any personal data we hold about you</li>
+                <li><strong>Rectify</strong> inaccurate or incomplete data</li>
+                <li><strong>Erase</strong> your personal data from our records</li>
+                <li><strong>Restrict or object</strong> to our processing of your data</li>
+                <li><strong>Data portability</strong> - receive your data in a structured format</li>
+                <li><strong>Withdraw consent</strong> at any time where processing is based on consent</li>
+            </ol>
+            
+            <div class="highlight">
+                <h3>How to Exercise Your Rights</h3>
+                <p>Since we don't collect personal data or images, there's typically no data to access or delete. However, if you have concerns:</p>
+                <p>1. Revoke permissions in your device settings<br>
+                2. Clear app cache and data<br>
+                3. Uninstall the app (this removes all local data)</p>
+            </div>
+        </section>
+        
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <p>If you have questions about this Data Rights page or our privacy practices:</p>
+            <p><strong>Email:</strong> [Your Support Email]<br>
+            <strong>Contact Form:</strong> [Link to Contact Form if available]<br>
+            <strong>App Support:</strong> Available through Huawei AppGallery</p>
+            
+            <p style="margin-top: 20px;"><em>We typically respond within 2-3 business days.</em></p>
+        </section>
+        
+        <footer>
+            <p>© [Year] [Your App Name]. All rights reserved.</p>
+            <p>This document is effective as of [Date] and may be updated periodically.</p>
+            <p><a href="privacy-policy.html" style="color: #3498db;">View Full Privacy Policy</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // Optional: Add current date automatically
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentDate = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Update all date placeholders
+            const dateElements = document.querySelectorAll('em:contains("[Date]"), p:contains("[Date]")');
+            dateElements.forEach(el => {
+                if (el.textContent.includes('[Date]')) {
+                    el.textContent = el.textContent.replace('[Date]', currentDate);
+                }
+            });
+            
+            // Update year
+            const yearElements = document.querySelectorAll('footer p:contains("[Year]")');
+            yearElements.forEach(el => {
+                el.textContent = el.textContent.replace('[Year]', new Date().getFullYear());
+            });
+        });
+    </script>
+</body>
+</html>
